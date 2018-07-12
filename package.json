@@ -1,0 +1,23 @@
+{
+  "name": "vue-base",
+  "version": "1.0.0",
+  "description": "vue ui libs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pin84/vue-base.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "qp1984@live.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pin84/vue-base/issues"
+  },
+  "homepage": "https://github.com/pin84/vue-base#readme"
+}
