@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="data:image/ico;base64,aWNv">
+	<title>01</title>
+	<style type="text/css">
+		*{margin:0;padding:0;box-sizing:border-box;
+		}
+		:root{
+			--button-height:32px;
+			--font-size:14px;
+			--button-bg:white;
+			--button-active-bg:#eee;
+			--border-radius:4px;
+			--color:#333;
+			--border-color:#999;
+			--border-color-hover:#666;
+		}
+		body{font-size:var(--font-size);} 
+		#app{margin:20px;}
+	</style>
+	<style>
+		.g-button{
+			font-size:var(--font-size);
+			height:var(--button-height);
+			padding:0 1rem;
+			border-radius:var(--border-radius);
+			border:1px solid var(--border-color);
+			background:var(--border-bg);
+		}
+		.g-button:hover{
+			border-color:var(--border-color-hover);
+		}
+		.g-button:active{
+			background-color:var(--button-active-bg);
+		}
+		.g-button:focus{
+			outline:none;
+		}
+	</style>
+</head>  
+<body>
+	<div id="app">
+		<g-button></g-button>
+	</div>
+
+	<script src='./node_modules/vue/dist/vue.min.js'></script>
+	<script src='./button.js'></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+		})
+	</script>
+</body>
+</html>
