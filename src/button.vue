@@ -1,14 +1,15 @@
 <template>
 	<button class='g-button' :class='{[`icon-${iconPosition}`]:true}'>
-		<svg v-if='icon' class='icon' >
+		<!-- <svg v-if='icon' class='icon' >
 			<use :xlink:href='`#i-${icon}`'></use>
-		</svg>
+		</svg> -->
+		<g-icon v-if='icon' :name='icon'></g-icon>
 		<div class='content'>
 			<slot></slot>
 		</div>
 	</button>
 </template>
-
+ 
 <script>
 	export default {
 		// props:['icon','iconPosition']
@@ -19,7 +20,7 @@
 				default:'left',
 				validator (value){ //属性验证
 					// if(value !== 'left' && value !== 'right'){
-					// 	return false 
+					// 	return false
 					// } else {
 					// 	return true
 					// }
@@ -42,8 +43,7 @@
 		justify-contents center
 		align-items center
 		vertical-align top
-		
-		&:hover{ 
+		&:hover{
 			border-color:var(--border-color-hover)
 		}
 		&:active{
