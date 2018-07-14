@@ -1,10 +1,10 @@
 <template>
-	<button class='g-button' :class='{[`icon-${iconPosition}`]:true}'>
-		<!-- <svg v-if='icon' class='icon' >
-			<use :xlink:href='`#i-${icon}`'></use>
-		</svg> -->
-		<g-icon v-if='icon' :name='icon'></g-icon>
-		<g-icon class='loading' name='loading'></g-icon>
+	<button class='g-button' 
+	:class='{[`icon-${iconPosition}`]:true}'
+	@click="$emit('click')"
+	>
+		<g-icon v-if='icon && !loading' :name='icon'></g-icon>
+		<g-icon class='loading' v-if='loading' name='loading'></g-icon>
 		<div class='content'>
 			<slot></slot>
 		</div>
@@ -16,6 +16,10 @@
 		// props:['icon','iconPosition']
 		props:{
 			icon:{},
+			loading:{
+				type:Boolean,
+				default:false
+			},
 			iconPosition:{
 				type:String,
 				default:'left',
@@ -28,6 +32,11 @@
 					return value === 'left' || value === 'right'
 				}
 			}
+		},
+		methods:{
+			// aa(){
+			// 	this.$emit('abc')
+			// }
 		}
 	}
 </script>
@@ -62,7 +71,7 @@
 		}
 		> .icon{
 			order:1
-			margin-right 1rem
+			margin-right .5rem
 		}
 		&.icon-right{
 			> .content{
@@ -71,7 +80,7 @@
 			> .icon{
 				order:2
 				margin-right 0
-				margin-left 1rem
+				margin-left .5rem
 			}
 		}
 		.loading{
