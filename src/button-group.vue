@@ -8,9 +8,8 @@
 <script>
  export default{
  	mounted(){
-
 		for(let node of this.$el.children){
-			let name = node.nodeName.toLowerCase() 
+			let name = node.nodeName.toLowerCase()
 			if(name !== 'button'){
 				console.warn(`g-button-group 的子元素应该全是g-button,但是你写的是 ${name}`)
 			}
@@ -30,16 +29,16 @@
 			margin-left -1px
 		}
 		&:first-child{
-			border-top-left-radius:var(--border-radius) 
-			border-bottom-left-radius:var(--border-radius) 
+			border-top-left-radius:var(--border-radius)
+			border-bottom-left-radius:var(--border-radius)
 		}
 		&:last-child{
-			border-top-right-radius:var(--border-radius) 
-			border-bottom-right-radius:var(--border-radius) 
+			border-top-right-radius:var(--border-radius)
+			border-bottom-right-radius:var(--border-radius)
 		}
 		&:hover{
 			z-index 1
 		}
 	}
-			
+
 </style>
