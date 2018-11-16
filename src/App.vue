@@ -3,10 +3,12 @@
     <div class="top" ref="top">
       <h1>index.vue</h1>
       <div class="links">
-        <router-link class="link"  v-for="(router,index) in routers" :key="index" :to="router">{{router}}</router-link>
+        <router-link class="link" v-for="(router,index) in routers" :key="index" :to="router">{{router}}</router-link>
       </div>
     </div>
-    <router-view />
+    <!-- <keep-alive> -->
+      <router-view />
+    <!-- </keep-alive> -->
   </div>
 </template>
 
@@ -14,9 +16,9 @@
 
 export default {
   name: 'app',
-  data(){
+  data() {
     return {
-      routers:['todoList','test']
+      routers: ['todoList', 'aaa']
     }
   },
   components: {
@@ -30,8 +32,7 @@ export default {
     showTop() {
       let top = this.$refs.top
       document.addEventListener('mousemove', (e) => {
-        let x = e.clientX,
-          y = e.clientY,
+        let y = e.clientY,
           distance = 30
         if (y < distance) {
           top.style.transform = 'translateX(-50%) translateY(0%)'
@@ -54,6 +55,7 @@ export default {
 </script>
 
 <style lang='stylus' scoped >
+@import url('./assets/css/reset.css');
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -5,6 +5,7 @@ Vue.use(Router)
 
 
 import TodoList from '../components/todoList/index'
+import aaa from '../components/aaa/index'
 
 export default new Router({
 
@@ -16,6 +17,10 @@ export default new Router({
     {
       path: '/todoList',
       component: TodoList
+    },
+    {
+      path: '/aaa',
+      component: aaa
     },
   ]
 })
