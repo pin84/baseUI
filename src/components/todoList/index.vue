@@ -12,8 +12,8 @@
     <hr>
     <ul class="list">
       <li class="item" v-for="(item,index) in datas" :key="index" :class="{done:item.done === '1'? true: false}">
-        <input type="checkbox">
-        {{item.id}} - {{item.task}} - {{item.done}}
+        <input type="checkbox" :checked="item.done === '1' ? true :false" @click.prevent="changeState(item.id,item.done)"> {{item.id}} - {{item.task}} - {{item.done}}
+        <button @click="deleteItem(item.id)">delete</button>
       </li>
     </ul>
     <div class="pageindex">
@@ -80,6 +80,30 @@ export default {
     changeType(n) {
       this.type = n
       this.initData()
+    },
+    changeState(id, done) {
+      //改变状态 1：已完成 0：未完成
+      let flag = done === '1' ? '0' : '1'
+      fetch(`${env.url}/changeState?id=${id}&done=${flag}`).then(res => {
+        return res.json()
+      }).then(data => {
+        if (data.code === 0) {
+          this.initData()
+        } else {
+          alert(data.row)
+        }
+      })
+    },
+    deleteItem(id) {
+      fetch(`${env.url}/delete?id=${id}`).then(res => {
+        return res.json()
+      }).then(data => {
+         if (data.code === 0) {
+          this.initData()
+        } else {
+          alert(data.row)
+        }
+      })
     }
   }
 
@@ -99,7 +123,7 @@ export default {
   .list
     padding 10px
     .item
-      line-height 24px
+      line-height 34px
     .done
       text-decoration line-through
       color #ccc
