@@ -17,9 +17,14 @@
       </li>
     </ul>
     <div class="pageindex">
-      <a href="" @click.prevent="changePage(num)" v-for="(num,i) in 4 " :key="i" :class="{active:num === index }">
+      <a href="" @click.prevent="changePage(num)" v-for="(num,i) in count " :key="i" :class="{active:num === index }">
         {{num}}
       </a>
+      <span>每页显示 </span>
+      <select @change='selectChange' ref="select">
+        <option value="num" v-for="(n,i) in options" :key="i">{{n}}</option>
+      </select>
+      <span> 项 </span>
     </div>
   </div>
 </template>
@@ -29,20 +34,34 @@ export default {
   data() {
     return {
       newTask: '',
-      done: 0,
+      done: 0, //完成或未完成的状态
       index: 1, //当前页码数
-      num: 3, //每页显示的条数
-      type: '',
-      datas: []
+      num: 5, //每页显示的条数
+      type: '', //数据库中done的类型。1：完成 ，0：未完成
+      count: 0,//页码数
+      options: 20, //下拉菜单的最大值 
+      datas: [],
     }
   },
 
-  mounted() {
-    console.log(typeof (this.index));
+  computed:{
 
+  },
+
+  mounted() {
     this.initData()
   },
   methods: {
+  
+    initData() { //todolist
+      fetch(`${env.url}/todoList?index=${this.index}&num=${this.num}&type=${this.type}`).then(res => {
+        return res.json()
+      }).then(data => {
+        this.count = data.count 
+        this.datas = data.todos
+        this.$refs.select.selectedIndex = this.num -1
+      })
+    },
     addTask() {
       fetch(`${env.url}/addTodo`, {
         method: 'POST',
@@ -65,19 +84,12 @@ export default {
         this.newTask = ''
       })
     },
-
-    initData() {
-      fetch(`${env.url}/todoList?index=${this.index}&num=${this.num}&type=${this.type}`).then(res => {
-        return res.json()
-      }).then(data => {
-        this.datas = data.todos
-      })
-    },
     changePage(num) {
       this.index = num
       this.initData()
     },
     changeType(n) {
+      this.index = 1 //防止完成或未完成的数据只有一个，但是页面切换到第二页时。会查询出一个数据 显示不出来
       this.type = n
       this.initData()
     },
@@ -98,12 +110,20 @@ export default {
       fetch(`${env.url}/delete?id=${id}`).then(res => {
         return res.json()
       }).then(data => {
-         if (data.code === 0) {
+        if (data.code === 0) {
           this.initData()
         } else {
           alert(data.row)
         }
       })
+    },
+    selectChange(){
+      let select  = this.$refs.select
+      let selectValue = select.options[select.selectedIndex].text 
+      console.log(selectValue);
+      
+      this.num = Number.parseInt(selectValue)
+      this.initData()
     }
   }
 
@@ -127,8 +147,11 @@ export default {
     .done
       text-decoration line-through
       color #ccc
-  .pageindex a
-    margin 0 5px
-    &.active
-      color red
+  .pageindex
+    height 60px
+    a
+      margin 0 5px
+      &.active
+        color red
+
 </style>

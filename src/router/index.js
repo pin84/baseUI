@@ -5,7 +5,7 @@ Vue.use(Router)
 
 
 import TodoList from '../components/todoList/index'
-import aaa from '../components/aaa/index'
+import firstProject from '../components/firstProject'
 
 export default new Router({
 
@@ -19,8 +19,8 @@ export default new Router({
       component: TodoList
     },
     {
-      path: '/aaa',
-      component: aaa
+      path: '/firstProject',
+      component: firstProject
     },
   ]
 })

@@ -1,5 +1,8 @@
-let test = 'http://localhost:9000/vuebase',
-pro = 'data.iathena.top'
+let test = 'http://localhost:9000/todolist',
+  pro = 'data.iathena.top'
+
+
 export default {
-  url:test
+  url: test,
+  firstProject: test
 }
