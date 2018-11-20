@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="container">
-
-      <div class="py-5 text-center">
+        <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/css/firstProject/sequelize.jpg" />
         <p class="lead">
           爱就好比骑马和学法语，如果不趁年轻时学会，以后想学会就难了。
@@ -37,206 +36,120 @@
                 When something bad happens,there is no point in wishing it had not happened.The only option is to minimize the damage.
                 每种生活都有它自己的规矩，如果你不愿意遵守，那么这种生活就不适合你。 -->
       </div>
-
-      <div class="heading text-right mb">
-        <a href="">注册</a>
-        <span> | </span>
-        <a href="">登录</a>
-      </div>
-
-
+      
+      
+      <Header />
 
       <div class="mb">
-        <div class="list">
+        <div class="list" v-for="(item,i) in datas" :key="i">
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">有哪些是一天以内就能掌握却受用终身的技能？</h5>
-            <small>2018/09/17</small>
+            <h5 class="mb-1">{{item.title}}</h5>
+            <small>{{item.created_at}}</small>
           </div>
           <p class="mb-1">
-            有什么是十分钟就能掌握但是受用 终身的技能？ 只要不是太繁琐或者是冷门知识，任何的日常小 贴士、生活小窍门都可以。你知道哪些技能是终 身受用，但只要十分钟，或者说稍加一些练习就 能精通的呢？
+            {{item.content}}
           </p>
           <footer class="text-right">
-            <small>赞（100）</small>
-            <small>回复（66）</small>
+            <small>赞（{{item.like_count}}）</small>
+            <small>回复（{{item.comment_count}}）</small>
             <a href="">我要回复</a>
           </footer>
-        </div>
-
-        <div class="list">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">怎么样才能好好聊天？</h5>
-            <small>2018/09/17</small>
-          </div>
-          <p class="mb-1">
-            自己讲话太直白容易伤人怎么改善？ 豆瓣有人私信问我，如何与人愉快聊天，最好是见解独到，让人感觉如沐春风。
-            作为一个才看完《奇葩说》的逗比，我好想学马东东说一句，赶快喝一杯，喝了就能愉快聊天的XX咖啡，或者是吃一颗变逗比的XX豆
-          </p>
-          <footer class="text-right">
-            <small>赞（10）</small>
-            <small>回复（5）</small>
-            <a href="">我要回复</a>
-          </footer>
-
-          <div class="list">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">怎么样才能好好聊天？</h5>
-              <small>2018/09/17</small>
-            </div>
-            <p class="mb-1">
-              自己讲话太直白容易伤人怎么改善？ 豆瓣有人私信问我，如何与人愉快聊天，最好是见解独到，让人感觉如沐春风。
-              作为一个才看完《奇葩说》的逗比，我好想学马东东说一句，赶快喝一杯，喝了就能愉快聊天的XX咖啡，或者是吃一颗变逗比的XX豆
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <ul class="pagination mb">
-        <li class="page-item disabled">
-          <span class="page-link"> &lt; </span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-          <span class="page-link">2</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#"> &gt; </a>
-        </li>
-      </ul>
-
-      <div class="modal" style="display: -block">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">注册</h5>
-              <button type="button" class="close">
-                <span>&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-
-              <!-- 注册 -->
-              <form>
-                <div class="form-group row">
-                  <label for="username" class="col-md-3 col-form-label">用户名</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" id="username" placeholder="用户名" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="password" class="col-md-3 col-form-label">密码</label>
-                  <div class="col-md-9">
-                    <input type="password" class="form-control" id="password" placeholder="密码" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="repassword" class="col-md-3 col-form-label">重复密码</label>
-                  <div class="col-md-9">
-                    <input type="password" class="form-control" id="repassword" placeholder="重复密码" />
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">注册</button>
-              <button type="button" class="btn btn-secondary">取消</button>
-              <a href="">我有账号，立即登录</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" style="display: -block">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">登录</h5>
-              <button type="button" class="close">
-                <span>&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-
-              <!-- 登录 -->
-              <form>
-                <div class="form-group row">
-                  <label for="username" class="col-md-3 col-form-label">用户名</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" id="username" placeholder="用户名" />
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="password" class="col-md-3 col-form-label">密码</label>
-                  <div class="col-md-9">
-                    <input type="password" class="form-control" id="password" placeholder="密码" />
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">登录</button>
-              <button type="button" class="btn btn-secondary">取消</button>
-              <a href="">我要注册</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" style="display: -block">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">xxxxxxxxxx</h5>
-              <button type="button" class="close">
-                <span>&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-
-              <!-- 回复 -->
-              <form>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <textarea class="form-control" id="username" placeholder="回复内容……" cols="30" rows="10"></textarea>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">回复</button>
-              <button type="button" class="btn btn-secondary">取消</button>
-            </div>
-          </div>
         </div>
       </div>
 
     </div>
+
+    <ul class="pagination mb">
+      <li class="page-item" :class="{disabled:pageIndex == 1}" @click="changePage(pageIndex - 1)">
+        <span class="page-link"> &lt; </span>
+      </li>
+
+      <li class="page-item" v-for="(n,i) in pages" :key="i" @click="changePage(n)" :class="{active:pageIndex == n}">
+        <span class="page-link">{{n}}</span>
+      </li>
+
+      <li class="page-item" :class="{disabled:pageIndex == pages}" @click="changePage(pageIndex + 1)">
+        <a class="page-link"> &gt; </a>
+      </li>
+    </ul>
+
+ 
+
+    <div class="modal" style="display: -block">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">xxxxxxxxxx</h5>
+            <button type="button" class="close">
+              <span>&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+
+            <!-- 回复 -->
+            <form>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <textarea class="form-control" id="username" placeholder="回复内容……" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">回复</button>
+            <button type="button" class="btn btn-secondary">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
+import url from '../../config'
+import Header from './Header'
+
 export default {
-  data(){
+  data() {
     return {
-      datas:[],
+      pageIndex: 1,//当前页码
+      pageNum: 2,//每页显示的条数
+      pages: 0,//总页数
+      datas: [],
     }
   },
+  components: {
+    Header,
+    
+  },
 
-  created(){
+  created() {
     this.initData()
   },
 
-  methods:{
-    initData(){
-      
+  methods: {
+    initData() {
+
+      fetch(`${url.firPro}/initData?pageIndex=${this.pageIndex}&pageNum=${this.pageNum}`).then(res => {
+        return res.json()
+      }).then(d => {
+        this.pages = d.pageCount
+        this.datas = d.data
+
+      })
+    },
+
+    changePage(n) {
+
+      n = Math.max(1, n)
+      n = Math.min(this.pages, n)
+      if (n == this.pageIndex) return
+
+      this.pageIndex = n
+      this.initData()
     }
   }
 
