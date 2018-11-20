@@ -16,33 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contents`
+-- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `contents`;
+DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `contents` (
+CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `title` varchar(45) NOT NULL,
-  `cntent` varchar(1000) NOT NULL,
-  `like_count` int(11) NOT NULL,
-  `comment_count` int(11) NOT NULL,
-  `createdAr` timestamp NULL DEFAULT NULL,
-  `updatedAr` timestamp NULL DEFAULT NULL,
+  `content` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contents`
+-- Dumping data for table `comments`
 --
 
-LOCK TABLES `contents` WRITE;
-/*!40000 ALTER TABLE `contents` DISABLE KEYS */;
-INSERT INTO `contents` VALUES (1,1,'aaa','1111',0,2,NULL,NULL),(2,2,'bbb','2222',0,1,NULL,NULL),(3,1,'ccc','333',0,0,NULL,NULL),(4,2,'ddd','444',0,0,NULL,NULL);
-/*!40000 ALTER TABLE `contents` ENABLE KEYS */;
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,1,1,'评论内容11111'),(2,2,1,'评论内容22222'),(3,3,2,'评论内容33333');
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 17:27:33
+-- Dump completed on 2018-11-20 17:25:43

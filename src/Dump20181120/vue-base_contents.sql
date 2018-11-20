@@ -16,29 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `like`
+-- Table structure for table `contents`
 --
 
-DROP TABLE IF EXISTS `like`;
+DROP TABLE IF EXISTS `contents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `like` (
+CREATE TABLE `contents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `content_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `content_id` (`content_id`) /*!80000 INVISIBLE */,
-  CONSTRAINT `like_c_id` FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `title` varchar(45) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `like_count` int(11) NOT NULL,
+  `comment_count` int(11) NOT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `like`
+-- Dumping data for table `contents`
 --
 
-LOCK TABLES `like` WRITE;
-/*!40000 ALTER TABLE `like` DISABLE KEYS */;
-/*!40000 ALTER TABLE `like` ENABLE KEYS */;
+LOCK TABLES `contents` WRITE;
+/*!40000 ALTER TABLE `contents` DISABLE KEYS */;
+INSERT INTO `contents` VALUES (1,1,'aaa','1111',0,2,'2018-08-29 01:15:08',NULL),(2,2,'bbb','2222',0,1,'2018-08-29 01:15:08',NULL),(3,1,'ccc','333',0,0,'2018-08-29 01:15:08',NULL),(4,2,'ddd','444',0,0,'2018-08-29 01:15:08',NULL),(5,1,'eeee','5555',1,3,'2018-08-29 01:15:08',NULL);
+/*!40000 ALTER TABLE `contents` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 17:27:32
+-- Dump completed on 2018-11-20 17:25:43

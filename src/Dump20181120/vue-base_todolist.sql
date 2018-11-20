@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `todolist`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `todolist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `user` (
+CREATE TABLE `todolist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` char(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `task` varchar(45) NOT NULL,
+  `done` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `todolist`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'a','1'),(2,'b','2');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `todolist` WRITE;
+/*!40000 ALTER TABLE `todolist` DISABLE KEYS */;
+INSERT INTO `todolist` VALUES (1,'学习node','0'),(2,'学习vue','0'),(3,'跑步','0'),(4,'休息','0'),(5,'task','0'),(6,'task','0'),(7,'bbb','0'),(8,'aaa','aaa'),(9,'ssfsdfsf','0'),(10,'aaaaaaa','0'),(11,'sdf','0'),(12,'sdfs','0'),(13,'AADF','0'),(14,'BBB','0'),(15,'sdf','0'),(16,'dfs','0'),(17,'adfsfs','0'),(18,'sdfsf','0'),(19,'adfsfsf','1'),(20,'sdfsdfsdf','1');
+/*!40000 ALTER TABLE `todolist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 17:27:33
+-- Dump completed on 2018-11-20 17:25:42

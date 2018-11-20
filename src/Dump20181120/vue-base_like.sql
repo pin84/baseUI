@@ -16,29 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comments`
+-- Table structure for table `like`
 --
 
-DROP TABLE IF EXISTS `comments`;
+DROP TABLE IF EXISTS `like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `comments` (
+CREATE TABLE `like` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `content` varchar(1000) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `content_id` (`content_id`) /*!80000 INVISIBLE */,
+  CONSTRAINT `like_c_id` FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comments`
+-- Dumping data for table `like`
 --
 
-LOCK TABLES `comments` WRITE;
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,1,1,'评论内容11111'),(2,2,1,'评论内容22222'),(3,3,2,'评论内容33333');
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+LOCK TABLES `like` WRITE;
+/*!40000 ALTER TABLE `like` DISABLE KEYS */;
+/*!40000 ALTER TABLE `like` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-19 17:27:34
+-- Dump completed on 2018-11-20 17:25:42
