@@ -1,10 +1,18 @@
 <template>
   <div>
     <div class="heading text-right mb">
-      <a href="" @click.prevent="register">注册</a>
-      <span> | </span>
-      <a href="" @click.prevent="login">登录</a>
+      <div v-if="userInfo.uid">
+        <a href="" @click.prevent="register">{{userInfo.username}}</a>
+        <span> | </span>
+        <a href="" @click.prevent="login">退出</a>
+      </div>
+      <div v-else>
+        <a href="" @click.prevent="register">注册</a>
+        <span> | </span>
+        <a href="" @click.prevent="login">登录</a>
+      </div>
     </div>
+    <!-- 注册 -->
     <Modal title='注册' :show="modalName === 'register'" @close="modalClose">
       <!-- 注册 -->
       <form>
@@ -66,9 +74,14 @@
 <script>
 import Modal from './modal/Modal'
 import url from '../../config'
+import axios from 'axios'
 export default {
   data() {
     return {
+      userInfo: {
+        uid: 0,
+        username: ''
+      },
       modalName: '',
       reg: {
         username: '',
@@ -96,6 +109,7 @@ export default {
     },
     modalClose() {
       this.modalName = ''
+
     },
     registerSubmit() {
       fetch(`${url.firPro}/register`, {
@@ -115,18 +129,27 @@ export default {
 
       })
     },
+
     loginSubmit() {
       fetch(`${url.firPro}/login`, {
-        method: 'post',
+        // credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify(this.log),
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.log)
+        }
       }).then(res => {
         return res.json()
-      }).then(data => {
-        console.log(data);
-
+      }).then(res => {
+        if (res.code) {
+          alert(res.data)
+        } else {
+          this.modalName = ''
+          this.userInfo.uid = res.data.id
+          this.userInfo.username = res.data.username
+          //把用户登录成功后的uid保存在localStorate
+          localStorage.setItem('uid', this.userInfo.uid)
+        }
       })
 
     }

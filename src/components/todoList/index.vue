@@ -118,9 +118,9 @@ export default {
       })
     },
     selectChange(){
+      this.index = 1
       let select  = this.$refs.select
       let selectValue = select.options[select.selectedIndex].text 
-      console.log(selectValue);
       
       this.num = Number.parseInt(selectValue)
       this.initData()

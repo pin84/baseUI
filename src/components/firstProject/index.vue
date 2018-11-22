@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="container">
-        <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="../../assets/css/firstProject/sequelize.jpg" />
+      <div class="py-5 text-center">
+        <!-- <img class="d-block mx-auto mb-4" src="../../assets/css/firstProject/sequelize.jpg" /> -->
         <p class="lead">
           爱就好比骑马和学法语，如果不趁年轻时学会，以后想学会就难了。
         </p>
@@ -36,8 +36,7 @@
                 When something bad happens,there is no point in wishing it had not happened.The only option is to minimize the damage.
                 每种生活都有它自己的规矩，如果你不愿意遵守，那么这种生活就不适合你。 -->
       </div>
-      
-      
+
       <Header />
 
       <div class="mb">
@@ -50,7 +49,7 @@
             {{item.content}}
           </p>
           <footer class="text-right">
-            <small>赞（{{item.like_count}}）</small>
+            <small @click="like(item.id)">赞（{{item.like_count}}）</small>
             <small>回复（{{item.comment_count}}）</small>
             <a href="">我要回复</a>
           </footer>
@@ -72,8 +71,6 @@
         <a class="page-link"> &gt; </a>
       </li>
     </ul>
-
- 
 
     <div class="modal" style="display: -block">
       <div class="modal-dialog">
@@ -123,7 +120,7 @@ export default {
   },
   components: {
     Header,
-    
+
   },
 
   created() {
@@ -132,7 +129,6 @@ export default {
 
   methods: {
     initData() {
-
       fetch(`${url.firPro}/initData?pageIndex=${this.pageIndex}&pageNum=${this.pageNum}`).then(res => {
         return res.json()
       }).then(d => {
@@ -143,13 +139,29 @@ export default {
     },
 
     changePage(n) {
-
       n = Math.max(1, n)
       n = Math.min(this.pages, n)
       if (n == this.pageIndex) return
-
       this.pageIndex = n
       this.initData()
+    },
+
+    like(contentId) {
+      fetch(`${url.firPro}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contentId:contentId.toString(),
+          uid: localStorage.getItem('uid')
+        })
+      }).then(res => {
+        return res.json()
+      }).then(data => {
+        // console.log(data);
+
+      })
     }
   }
 
