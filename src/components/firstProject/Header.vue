@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="heading text-right mb">
-      <div v-if="userInfo.uid">
+      <div v-if="userInfo.username">
         <a href="" @click.prevent="register">{{userInfo.username}}</a>
         <span> | </span>
         <a href="" @click.prevent="login">退出</a>
@@ -99,6 +99,24 @@ export default {
     Modal,
   },
 
+  created() {
+    //取出 cookie 中的用户信息并存到 vue 的 userInfo 中，以达到刷新页面不退出
+    let arr1 = document.cookie.split('; ')
+    arr1 = arr1.map(item => {
+      let arr2 = item.split('=') // ['uid',1]
+      return {
+        [arr2[0]]: arr2[1]
+      }
+    })
+    let cookies = Object.assign({}, ...arr1)
+    
+    this.userInfo = {
+      uid: cookies.uid,
+      username: cookies.username
+    }
+
+  },
+
 
   methods: {
     register() {
@@ -132,7 +150,7 @@ export default {
 
     loginSubmit() {
       fetch(`${url.firPro}/login`, {
-        // credentials: 'include',
+        credentials: 'include',
         method: 'POST',
         body: JSON.stringify(this.log),
         headers: {
@@ -147,8 +165,8 @@ export default {
           this.modalName = ''
           this.userInfo.uid = res.data.id
           this.userInfo.username = res.data.username
-          //把用户登录成功后的uid保存在localStorate
-          localStorage.setItem('uid', this.userInfo.uid)
+          //把用户登录成功后的uid保存在localStorage中 (后台使用cookie存入cookie 后。就不用localStorage存了)
+          // localStorage.setItem('uid', this.userInfo.uid)
         }
       })
 

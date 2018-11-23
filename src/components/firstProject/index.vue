@@ -148,19 +148,27 @@ export default {
 
     like(contentId) {
       fetch(`${url.firPro}/like`, {
+        credentials: 'include',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          contentId:contentId.toString(),
+          contentId: contentId.toString(),
           uid: localStorage.getItem('uid')
         })
       }).then(res => {
         return res.json()
-      }).then(data => {
-        // console.log(data);
-
+      }).then(res => {
+        if (res.code) {
+          alert(res.data)
+        } else {
+          this.datas.forEach(item => {
+            if (item.id == res.data[0].id) {
+              item.like_count = res.data[0].like_count
+            }
+          })
+        }
       })
     }
   }
