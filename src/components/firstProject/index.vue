@@ -134,7 +134,6 @@ export default {
       }).then(d => {
         this.pages = d.pageCount
         this.datas = d.data
-
       })
     },
 

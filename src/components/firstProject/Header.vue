@@ -74,7 +74,6 @@
 <script>
 import Modal from './modal/Modal'
 import url from '../../config'
-import axios from 'axios'
 export default {
   data() {
     return {
