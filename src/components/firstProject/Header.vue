@@ -4,7 +4,7 @@
       <div v-if="userInfo.username">
         <a href="" @click.prevent="register">{{userInfo.username}}</a>
         <span> | </span>
-        <a href="" @click.prevent="login">退出</a>
+        <a href="" @click.prevent="logout">退出</a>
       </div>
       <div v-else>
         <a href="" @click.prevent="register">注册</a>
@@ -108,7 +108,7 @@ export default {
       }
     })
     let cookies = Object.assign({}, ...arr1)
-    
+
     this.userInfo = {
       uid: cookies.uid,
       username: cookies.username
@@ -164,9 +164,21 @@ export default {
           this.modalName = ''
           this.userInfo.uid = res.data.id
           this.userInfo.username = res.data.username
+          
           //把用户登录成功后的uid保存在localStorage中 (后台使用cookie存入cookie 后。就不用localStorage存了)
-          // localStorage.setItem('uid', this.userInfo.uid)
+          localStorage.setItem('uid', this.userInfo.uid)
         }
+      })
+
+    },
+    logout() {
+      
+      fetch(`${url.firPro}/logout`,{
+        credentials: 'include',
+      }).then(res => {
+        return res.json()
+      }).then(res => {
+        this.userInfo.username = ''
       })
 
     }

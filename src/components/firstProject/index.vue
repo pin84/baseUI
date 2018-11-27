@@ -51,13 +51,14 @@
           <footer class="text-right">
             <small @click="like(item.id)">赞（{{item.like_count}}）</small>
             <small>回复（{{item.comment_count}}）</small>
-            <a href="">我要回复</a>
+            <a href="" @click.prevent="showReply">我要回复</a>
           </footer>
         </div>
       </div>
 
     </div>
 
+    <!-- 上一页 下一页 -->
     <ul class="pagination mb">
       <li class="page-item" :class="{disabled:pageIndex == 1}" @click="changePage(pageIndex - 1)">
         <span class="page-link"> &lt; </span>
@@ -72,42 +73,15 @@
       </li>
     </ul>
 
-    <div class="modal" style="display: -block">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">xxxxxxxxxx</h5>
-            <button type="button" class="close">
-              <span>&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-
-            <!-- 回复 -->
-            <form>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea class="form-control" id="username" placeholder="回复内容……" cols="30" rows="10"></textarea>
-                </div>
-              </div>
-            </form>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">回复</button>
-            <button type="button" class="btn btn-secondary">取消</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 回复页面 -->
+    <Reply :show='replyShow'  @closeReply="closeReply"/>
 
   </div>
 </template>
 <script>
 import url from '../../config'
 import Header from './Header'
+import Reply from './Reply'
 
 export default {
   data() {
@@ -116,15 +90,17 @@ export default {
       pageNum: 2,//每页显示的条数
       pages: 0,//总页数
       datas: [],
+      replyShow: false,
     }
   },
   components: {
     Header,
-
+    Reply
   },
 
   created() {
     this.initData()
+    this.full
   },
 
   methods: {
@@ -169,6 +145,18 @@ export default {
           })
         }
       })
+    },
+    showReply() {
+      let cookie = document.cookie
+      console.log(cookie);
+      
+      if(!cookie){
+        return alert('请先登录')
+      }
+      this.replyShow = !this.replyShow
+    },
+    closeReply(){
+      this.replyShow= !this.replyShow
     }
   }
 
