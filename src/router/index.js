@@ -5,7 +5,8 @@ Vue.use(Router)
 
 
 import TodoList from '../components/todoList/index'
-import firstProject from '../components/firstProject'
+import FirstProject from '../components/firstProject'
+import Meishi from '../components/meishiBak'
 
 export default new Router({
 
@@ -20,7 +21,11 @@ export default new Router({
     },
     {
       path: '/firstProject',
-      component: firstProject
+      component: FirstProject
+    },
+    {
+      path: '/meishi',
+      component: Meishi
     },
   ]
 })

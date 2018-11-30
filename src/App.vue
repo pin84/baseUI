@@ -18,7 +18,7 @@ export default {
   name: 'app',
   data() {
     return {
-      routers: ['todoList', 'firstProject']
+      routers: ['todoList', 'firstProject','meishi']
     }
   },
   components: {
