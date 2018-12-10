@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div class="top" ref="top">
-      <h1>index.vue</h1>
+      <h1>vue-base</h1>
       <div class="links">
         <router-link class="link" v-for="(router,index) in routers" :key="index" :to="router">{{router}}</router-link>
       </div>
     </div>
-    <!-- <keep-alive> -->
+    <keep-alive>
       <router-view />
-    <!-- </keep-alive> -->
+    </keep-alive>
   </div>
 </template>
 
@@ -18,14 +18,15 @@ export default {
   name: 'app',
   data() {
     return {
-      routers: ['todoList', 'firstProject','meishi']
+      // routers: ['todoList', 'firstProject','meishi']
+      routers: ['todoList', 'firstProject']
     }
   },
   components: {
   },
 
   mounted() {
-    // this.showTop()
+    this.showTop()
   },
   methods: {
 
@@ -65,9 +66,9 @@ export default {
   box-sizing:border-box;
 }
 .top
-  // position fixed
-  // top 0
-  // left 50%
+  position fixed
+  top 0
+  left 50%
   margin 0 auto
   width 80%
   height 200px
@@ -75,7 +76,7 @@ export default {
   padding 5px
   box-sizing:border-box
   transition 800ms
-  // transform translateX(-50%) translateY(-100%)
+  transform translateX(-50%) translateY(-100%)
   background #fff
   box-shadow 10px 10px 5px #ccc
   border-radius 10px

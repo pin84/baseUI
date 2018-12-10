@@ -3,13 +3,13 @@
     <div class="container">
       <div class="py-5 text-center">
         <!-- <img class="d-block mx-auto mb-4" src="../../assets/css/firstProject/sequelize.jpg" /> -->
-        <p class="lead">
+        <!-- <p class="lead">
           爱就好比骑马和学法语，如果不趁年轻时学会，以后想学会就难了。
         </p>
         <p class="lead">
           Love is like riding or speaking French,if you don not learn it young, it's hard to get the trick of it
           later.
-        </p>
+        </p> -->
         <!-- 人这一生，总要心碎一两次的。
 
                 We must have our heart broken once or twice before we are done.

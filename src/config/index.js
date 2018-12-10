@@ -1,8 +1,8 @@
 let test = 'http://localhost:9000/todolist',
-  pro = 'data.iathena.top',
-  firPro = 'http://localhost:9000/firstProject'
+  pro = 'https://data.iathena.top/todolist',
+  firPro = 'https://data.iathena.top/firstProject'
 
 export default {
-  url: test,
+  url: pro,
   firPro
 }
