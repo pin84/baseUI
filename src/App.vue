@@ -1,9 +1,25 @@
 <template>
   <div id="app">
-    <div class="top" ref="top">
+    <div
+      class="top"
+      ref="top"
+    >
       <h1>vue-base</h1>
       <div class="links">
-        <router-link class="link" v-for="(router,index) in routers" :key="index" :to="router">{{router}}</router-link>
+        <router-link
+          class="link"
+          tag="li"
+          to='/todoList'
+        >
+          <a href="javascript:;">todoList</a>
+        </router-link>
+        <router-link
+          class="link"
+          tag="li"
+          to='/firstProject'
+        >
+          <a href="javascript:;">firstProject</a>
+        </router-link>
       </div>
     </div>
     <keep-alive>
